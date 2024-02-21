@@ -1,0 +1,153 @@
+@import "bootstrap/dist/css/bootstrap.css";
+
+
+
+
+
+
+.s1{
+    color: lightgray;
+}
+
+body{
+    background-color: #031525;
+    color: white;
+}
+
+.bg2{
+
+    background-color: #0d2136;
+}
+
+.cbody{
+    background-color: #0d2136;
+
+    min-height: 250px;
+}
+
+.dragx{
+
+        pointer-events:visiblePainted;
+
+
+    min-height: 250px;
+}
+
+
+.tnscover{
+
+    display: none;
+    animation: 1s rtx;
+
+}
+
+
+
+.lpx :hover{
+
+}
+
+
+.cbody:hover {
+   border: 1px solid white;
+
+    transition: ease-in-out 0.3s;
+    display: flex;
+
+
+
+}
+
+@keyframes rtx {
+
+    0%{
+
+        width: 0;
+}
+    100%{
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+}
+
+
+
+
+
+.hdrxx{
+
+    width: 100vw;
+    min-height: 80px;
+}
+
+
+.sidebar{
+
+
+    transition: ease-in-out 0.3s ;
+    width: 300px;
+
+}
+.sidebar div{
+
+
+}
+.sidebar.show{
+    transition: ease-in-out 0.2s ;
+    width: 0px;
+    display: none;
+}
+
+.xitem div{
+
+
+   border-radius: 8px;
+    align-items: center;
+    display: flex;
+    padding: 12px;
+    color: #5e5d72;
+    margin: 1px 15px 0px 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+}
+
+.xitem div:hover{
+    color: #0858f7;
+    background-color: #f0f0f0;
+
+}
+
+.xitem   .act{
+    background-color: #ebf6ff;
+
+    color: #0858f7;
+
+}
+
+
+.lx:hover{
+    background-color: #031525;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 10px;
+}
+
+.tile {
+    border: 1px solid #ccc;
+    font-size: 24px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.dragging {
+    opacity: 0.5;
+    transform: scale(1.1);
+}
