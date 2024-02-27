@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
                     res.status(200).json(rv);
 
-                }else {
+                } else {
 
 
                     const rv = await video.findOne({_id: req.query.search});
@@ -90,8 +90,8 @@ export default async function handler(req, res) {
             break;
         case 'POST':
             let rx="";
-            if (req.query._id){
-                rx=await video.updateOne({_id:req.query._id},{$set:req.body})
+            if (req.body._id){
+                rx=await video.updateOne({_id:req.body._id},{$set:req.body})
             }else{
                 rx=await video.create(req.body)
             }

@@ -7,17 +7,26 @@ import Swal from "sweetalert2";
 import {FaKey} from "react-icons/fa";
 import Sidex from "@/Comp/Sidex";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(xx) {
     //Making a get request to an API endpoint to get posts.
     const response = await axios.get(rh.api+"api/categories");
     const responsex = await axios.get(rh.api+"api/language");
     const responsez = await axios.get(rh.api+"api/publisher");
+    let responsea={};
+
+    if (xx.query._id){
+         responsea = await axios.get(rh.api+"api/createvideo?on=_id&type=1&search="+xx.query._id);
+    }
+
+
+
 
     return {
         props: {
             cat: response.data,
             lang:responsex.data,
-            prod:responsez.data
+            prod:responsez.data,
+            data:xx.query._id!=null?responsea.data:null
 
         },
     };
@@ -32,6 +41,13 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
     const  [seris,setseris]=useState({name:"Is it Series ?",id:""})
 
 
+    useEffect(()=>{
+        if (prop.data){
+            setbnr({app:prop.data.APP,bnr: prop.data.BNR })
+
+            console.log(prop.d);
+        }
+    },[prop.data])
     return <>
 
 
@@ -170,7 +186,7 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
 
                     <div className="">Video ID:</div>
 
-                    <input type="text" name="VIDEOID" className="form-control rtx"/>
+                    <input type="text" name="VIDEOID" className="form-control rtx" defaultValue={prop.data?prop.data.VIDEOID:""}/>
 
                 </div>
 
@@ -178,7 +194,7 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
 
                     <div className="">TITLE :</div>
-                    <input type="text" name="TITLE" className="form-control rtx"/>
+                    <input type="text" name="TITLE" className="form-control rtx"  defaultValue={prop.data?prop.data.TITLE:""}/>
 
                 </div>
 
@@ -187,7 +203,8 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
 
                     <select name="PRODUCER" className="form-control rtx">
 
-                    <option value="" >SELECT PRODUCER</option>
+                        {prop.data ? <option value={prop.data.PRODUCER}>{prop.data.PRODUCER}</option> :
+                            <option value="">SELECT PRODUCER</option>}
 
                     {prop.prod?.map((nam,inx)=>{
 
@@ -202,50 +219,50 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
 
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> DIRECTOR :</div>
-                    <input type="text" name="DIRECTOR" className="form-control rtx"/>
+                    <input type="text" name="DIRECTOR" className="form-control rtx" defaultValue={prop.data?prop.data.DIRECTOR:""}/>
 
                 </div>
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> DURATION :</div>
-                    <input type="text" name="DURATION" className="form-control rtx"/>
+                    <input type="text" name="DURATION" className="form-control rtx" defaultValue={prop.data?prop.data.DURATION:""}/>
 
                 </div>
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> AWARDS :</div>
-                    <input type="text" name="AWARDS" className="form-control rtx"/>
+                    <input type="text" name="AWARDS" className="form-control rtx" defaultValue={prop.data?prop.data.AWARDS:""}/>
 
                 </div>
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> RATING :</div>
-                    <input type="text" name="RATING" className="form-control rtx" />
+                    <input type="text" name="RATING" className="form-control rtx" defaultValue={prop.data?prop.data.RATING:""}/>
 
                 </div>
 
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> RELEASE YEAR :</div>
-                    <input type="text" name="YEAR" className="form-control rtx"/>
+                    <input type="text" name="YEAR" className="form-control rtx"  defaultValue={prop.data?prop.data.YEAR:""}/>
 
                 </div>
 
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> CAST :</div>
-                    <input type="text" name="CAST" className="form-control rtx"/>
+                    <input type="text" name="CAST" className="form-control rtx"  defaultValue={prop.data?prop.data.CAST:""}/>
 
                 </div>
 
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
                     <div className=""> SESSION :</div>
-                    <input type="text" name="SESSION" className="form-control rtx"/>
+                    <input type="text" name="SESSION" className="form-control rtx"  defaultValue={prop.data?prop.data.SESSION:""}/>
 
                 </div>
 
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
+
                     <div className=""> LANGUAGE :</div>
-
-
                     <select name="LANGUAGE" className="form-control rtx">
+                        {prop.data ? <option value={prop.data.LANGUAGE}>{prop.data.LANGUAGE}</option> :
 
-                        <option value="" >SELECT LANGUAGE</option>
+                        <option value="" >SELECT LANGUAGE</option>}
 
                         {prop.lang?.data.map((nam,inx)=>{
 
@@ -262,8 +279,9 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
 
 
                     <select name="CATEGORY" className="form-control rtx">
+                        {prop.data ? <option value={prop.data.CATEGORY}>{prop.data.CATEGORY}</option> :<option value="" >SELECT CATEGORY</option>
+                        }
 
-                        <option value="" >SELECT CATEGORY</option>
 
                         {prop.cat?.data.map((nam,inx)=>{
 
@@ -282,7 +300,7 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
                     <div className=""> DESCRIPTION :</div>
 
 
-                    <textarea className=" mt-1 form-control rtx" name="DESCRIPTION" id="" rows="7"></textarea>
+                    <textarea className=" mt-1 form-control rtx" name="DESCRIPTION" id="" rows="7"  defaultValue={prop.data?prop.data.DESCRIPTION:""}></textarea>
 
                 </div>
 
@@ -339,6 +357,9 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
         rs["SERIES"] = seris._id;
         rs["BNR"] = bnrx.bnr;
         rs["APP"] = bnrx.app;
+
+       prop.data? rs["_id"]=prop.data._id:"";
+
 
 
         console.log(rs);

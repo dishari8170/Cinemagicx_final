@@ -96,6 +96,17 @@ export default ()=>{
 
 
 
+                                    <FaPencil onClick={y=>{
+
+
+                                        window.location.href="/createvideo?_id="+et._id
+                                        // axios.delete("/api/createvideo?_id="+et._id).then(o=>{
+                                        //
+                                        //     window.location.reload()
+                                        // })
+
+                                    }}/>
+
 
 
                                     <FaTrash onClick={y=>{
