@@ -11,25 +11,31 @@ import {Modal} from "react-bootstrap";
 import Sidex from "@/Comp/Sidex";
 import {rh} from "@/lib/RH";
 import UploadX from "@/Comp/UploadX";
+import {useRouter} from "next/router";
 
 export default ()=>{
     const  [getudat,setudat]=useState([])
     const  [isOpen,setIsOpen]=useState(false)
 
-    const [getc,setc] = useState({});
+    const [getc,setc] = useState(0);
 
     const [dp,setdp] = useState(null);
 
+const rroute=useRouter();
 
 
 
+    function loaddataU(s="0") {
 
-    function loaddataU(s="u") {
+        axios.get("/api/createvideo?limit=10&pro=TITLE,BNR,_id&skip="+s).then(value => {
 
-        axios.get("/api/createvideo").then(value => {
-
+            setc(value.data.total);
 
             setudat(value.data.data);
+
+
+            const up = document.getElementById("loadingx")
+            up.style.display = "none";
 
         })
 
@@ -61,7 +67,32 @@ export default ()=>{
             <div className="px-lg-3 text-center">
 
                 <div className="d-flex justify-content-between align-items-center">
-                    <div className="h4 text-dark">Videos List</div>
+                    <div className="text-dark">
+
+
+
+
+
+
+                        <ul className="pagination">
+
+                            { [...Array( Math.ceil (getc/10))].map((_, index)=> {return  <li className={"page-item"}><div className="page-link " style={{cursor:"pointer"}} onClick={y=>{
+
+                                const up = document.getElementById("loadingx")
+                                up.style.display = "flex";
+                                loaddataU(index*10);
+
+
+
+                            }}>{index*10}</div></li>})}
+
+
+
+
+                        </ul>
+
+
+                    </div>
                     <div className="btn btn-primary float-end my-2" onClick={u=>{
 
 

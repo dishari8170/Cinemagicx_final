@@ -54,21 +54,21 @@ export default () => {
     const [data , setdata] = useState([])
 
 
-
-    useEffect(()=> {
-
-        const up = document.getElementById("loadingx")
-        up.style.display = "flex";
-
-        axios.get("/api/createvideo").then(t => {
-
-            up.style.display = "none"
-
-            setdata(t.data?.data)
-
-
-        })
-    },[])
+    //
+    // useEffect(()=> {
+    //
+    //     const up = document.getElementById("loadingx")
+    //     up.style.display = "flex";
+    //
+    //     axios.get("/api/createvideo").then(t => {
+    //
+    //         up.style.display = "none"
+    //
+    //         setdata(t.data?.data)
+    //
+    //
+    //     })
+    // },[])
 
     return <>
 

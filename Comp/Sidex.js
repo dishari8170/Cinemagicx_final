@@ -101,7 +101,7 @@ export default ( {children})=>{
                     <div className={`btn ${(router.pathname === "/admin/categories" ? " act" : "")}`} onClick={o=>{window.location.href="/admin/categories"}}> <FaUser className="me-2"/> Manage Categories</div>
 
                     <div className={`btn ${(router.pathname === "/admin/videos" ? " act" : "")}`} onClick={o=>{window.location.href="/admin/videos"}}> <FaUser className="me-2"/> Manage Videos</div>
-                    <div className={`btn ${(router.pathname === "/admin/categoriesx" ? " act" : "")}`} onClick={o=>{window.location.href="/admin/categories"}}> <FaVideo className="me-2"/> Live Videos</div>
+                    <div className={`btn ${(router.pathname === "/admin/revX" ? " act" : "")}`} onClick={o=>{window.location.href="/admin/revX"}}> <FaVideo className="me-2"/> Manage Reviews</div>
                     <div className={`btn ${(router.pathname === "/admin/categoriesa" ? " act" : "")}`} onClick={o=>{window.location.href="/admin/categories"}}> <FaUser className="me-2"/> Manage User</div>
                     <div className={`btn ${(router.pathname === "/admin/categoriesaa" ? " act" : "")}`} onClick={o=>{window.location.href="/admin/categories"}}> <FaUser  className="me-2"/>Uses Stat</div>
 

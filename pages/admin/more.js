@@ -273,7 +273,7 @@ export default () => {
         const up = document.getElementById("loadingx")
         up.style.display = "flex";
 
-        axios.get("/api/createvideo?limit=10&on=TITLE&pro=TITLE,BNR&search=" + s).then(value => {
+        axios.get("/api/createvideo?limit=10&on=TITLE&pro=TITLE,BNR,APP&search=" + s).then(value => {
 
 
             setdatax(value.data.data);

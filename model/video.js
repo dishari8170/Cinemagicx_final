@@ -12,11 +12,18 @@ YEAR :String,
 CAST :String, 
 SESSION :String, 
 LANGUAGE :String, 
-CATEGORY :String, 
+CATEGORY :String,
+        xstar: {
+            type: Number,
+            default: 5
+        },
 DESCRIPTION :String,
 BNR :String,
 APP :String,
+        GENRE :String,
+        TRAILER :String,
 SERIES:String
+
 
     },{
         timestamps:true

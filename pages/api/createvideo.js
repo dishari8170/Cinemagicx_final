@@ -32,6 +32,50 @@ export default async function handler(req, res) {
 
 
                             }},{ $sample: { size: 1 } }])
+
+
+
+
+
+                        if(rv["SERIES"]){
+
+                            const ser=   await    video.aggregate([
+
+
+                                {
+                                    $match:{
+                                        SERIES:rv["SERIES"]
+                                    }
+
+                                },
+
+
+                                {
+                                    $group:{
+
+                                        _id:"$SESSION",
+                                        DATA:{ $addToSet: {_id:"$_id",APP: "$APP" }}
+                                    }
+                                }
+
+
+                            ]);
+
+
+
+                             res.status(200).json(
+
+                                {vdo:rv,ser:ser,ads:ads[0]}
+
+                            );
+                            return;
+
+
+
+                                }
+
+
+
                         res.status(200).json({vdo:rv,ads:ads[0]});
 
                         return;

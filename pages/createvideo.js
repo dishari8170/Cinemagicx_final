@@ -228,13 +228,13 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
 
                 </div>
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
-                    <div className=""> AWARDS :</div>
-                    <input type="text" name="AWARDS" className="form-control rtx" defaultValue={prop.data?prop.data.AWARDS:""}/>
+                    <div className=""> TRAILER ID :</div>
+                    <input type="text" name="TRAILER" className="form-control rtx" defaultValue={prop.data?prop.data.TRAILER:""}/>
 
                 </div>
                 <div className="col-12 col-lg-4 col-md-6 mt-2">
-                    <div className=""> RATING :</div>
-                    <input type="text" name="RATING" className="form-control rtx" defaultValue={prop.data?prop.data.RATING:""}/>
+                    <div className=""> GENRE :</div>
+                    <input type="text" name="GENRE" className="form-control rtx" defaultValue={prop.data?prop.data.GENRE:""}/>
 
                 </div>
 
@@ -285,7 +285,7 @@ const [bnrx,setbnr]=useState({bnr:"",app:""})
 
                         {prop.cat?.data.map((nam,inx)=>{
 
-                            return  <option value={nam._id}  key={inx}>{nam.name}</option>
+                            return  <option value={nam.name}  key={inx}>{nam.name}</option>
 
 
                         })}
