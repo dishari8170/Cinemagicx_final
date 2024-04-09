@@ -4,11 +4,14 @@ import Ads from '@/model/Ads'
 export default async function handler(req, res) {
 
 
-    await dbConnect()
+    await dbConnect();
+
 
     switch (req.method) {
 
         case 'GET':
+            console.log(req.method)
+
             const dox = {};
             const queryOptions = {};
             if (req.query.sort) {
@@ -49,6 +52,7 @@ export default async function handler(req, res) {
 
             dox.total= await Ads.countDocuments(searchQuery);
             res.status(200).json(dox);
+
             break;
         case 'DELETE':
             const gr=await Ads.deleteOne({_id:req.query._id})

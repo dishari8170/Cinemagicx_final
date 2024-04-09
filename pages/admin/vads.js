@@ -58,7 +58,7 @@ export default ()=>{
 
         <Modal show={isOpen} onHide={(i)=>{setIsOpen(false)}} fullscreen={false}  centered={true} onEscapeKeyDown={ip=>{ip.preventDefault()}}>
             <Modal.Header style={{backgroundColor:"#013571",color:"white"}}>
-                <div className="w-100 h3"><div className="text-center">Add New Person</div>
+                <div className="w-100 h3"><div className="text-center">Video Add</div>
                 </div>
                 <button onClick={(i)=>{setIsOpen(false)}} className="bg-transparent border-0 h1 m-0">&times;</button>
             </Modal.Header>
@@ -107,7 +107,7 @@ export default ()=>{
 
                                         return await axios.post(`/api/vads${getc?._id?"?_id="+getc?._id:""}`, dat).then(r => {
 
-                                            Swal.fire("Success", getc?.pass? "Publisher Updted":"Publisher Created", "success").then(y=>{
+                                            Swal.fire("Success", getc?._id? "Video Add Created":"Video Add Updated", "success").then(y=>{
 
                                                 window.location.reload()
                                                 setIsOpen(false)

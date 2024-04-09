@@ -54,7 +54,7 @@ export default ()=>{
 
         <Modal show={isOpen} onHide={(i)=>{setIsOpen(false)}} fullscreen={true}  centered={true} onEscapeKeyDown={ip=>{ip.preventDefault()}}>
             <Modal.Header style={{backgroundColor:"#013571",color:"white"}}>
-                <div className="w-100 h3"><div className="text-center">Add New Person</div>
+                <div className="w-100 h3"><div className="text-center">Update Category</div>
                 </div>
                 <button onClick={(i)=>{setIsOpen(false)}} className="bg-transparent border-0 h1 m-0">&times;</button>
             </Modal.Header>
@@ -83,7 +83,10 @@ export default ()=>{
 
                             setdp(rt.dp)
 
-                        }} > <img src={ rh.ImUrl+"/"+ rt.dp} height={200} width={200} alt={rt.dp} ></img> </div>
+                        }} > <img className="align-items-center"
+
+                                  src={ rh.ImUrl+"/"+ rt.dp}
+                                  height={70} width={70} alt={rt.dp} ></img> </div>
 
 
                     }
@@ -93,9 +96,21 @@ export default ()=>{
 
                 </div>
 
-                    {dp?<img src={rh.ImUrl+dp} alt={""}/>:""}
+                    {dp?
 
-                    {getc?._id?<input type="hidden"  name="_id" className="form-control mt-1" placeholder="Name" defaultValue={getc?._id} />:""}
+
+                        <img className="d-flex justify-content-center
+                    align-items-center
+                    "  src={rh.ImUrl+dp} style={{display:"block",margin:"auto",padding:"30px",
+                        height:"200px",width:"200px"}} alt={""}/>
+
+
+                        :""}
+
+                    {getc?._id?
+
+
+                        <input type="hidden"  name="_id" className="form-control mt-1" placeholder="Name" defaultValue={getc?._id} />:""}
 
                     <b>Thumb:</b>
                     <UploadX cb={o=>{setdp(o)}}/>
@@ -122,10 +137,11 @@ export default ()=>{
 
                             Swal.fire(
 
-                                {title:"Details are",html: '<div style="white-space: pre-wrap;">'+JSON.stringify(dat) +"</div>",icon:"info",
+                                {title:"Are You Sure",icon:"info",
 
                                     showCancelButton:true,
                                     showLoaderOnConfirm:true,
+                                    confirmButtonText:'Yes',
 
                                     preConfirm:async () => {
 
@@ -133,7 +149,7 @@ export default ()=>{
 
                                         return await axios.post(`/api/categories${getc?._id?"?_id="+getc?._id:""}`, dat).then(r => {
 
-                                            Swal.fire("Success", getc?.pass?"Publisher Updted":"Publisher Created", "success").then(y=>{
+                                            Swal.fire("Success", getc?.pass?"Publisher Updted":"Update Successful", "success").then(y=>{
 
                                                 window.location.reload()
                                                 setIsOpen(false)
@@ -195,7 +211,7 @@ export default ()=>{
 
 
                         return <tr key={ind}>
-                            <td><img src={rh.ImUrl+"/"+et.dp} alt="" width={150} height={100}/></td>
+                            <td><img src={rh.ImUrl+"/"+et.dp} alt="" width={40} height={40}/></td>
                             <td>{et.name}</td>
 
                             <td className=" ">
